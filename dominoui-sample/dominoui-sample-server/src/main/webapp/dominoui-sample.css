@@ -32,3 +32,10 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+@media screen and (min-width: 992px) {
+  .content-margin {
+    margin-left: 20% !important;
+    margin-right: 20% !important;
+  }
+}

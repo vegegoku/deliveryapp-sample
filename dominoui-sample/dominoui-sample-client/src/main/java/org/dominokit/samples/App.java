@@ -1,26 +1,73 @@
 package org.dominokit.samples;
 
 import com.google.gwt.core.client.EntryPoint;
-import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.infoboxes.InfoBox;
+import com.google.gwt.core.client.GWT;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLElement;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.utils.ElementUtil;
 
-import static org.jboss.gwt.elemento.core.Elements.p;
+import static org.jboss.gwt.elemento.core.Elements.img;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class App implements EntryPoint {
 
-	/**
-	 * This is the entry point method.
-	 */
-	public void onModuleLoad() {
-        Layout layout = Layout.create("RAMI APP").show(ColorScheme.PINK);
+    private DeliveryManagementComponent deliveryManagementComponent = new DeliveryManagementComponent();
+    private ReceiverComponent receiverComponent = new ReceiverComponent();
+    private ShipmentDateComponent shipmentDateComponent = new ShipmentDateComponent();
+    private ShipmentAddressComponent shipmentAddressComponent = new ShipmentAddressComponent();
 
-        layout.getContentPanel().appendChild(Card.create("FIRST CARD", "this is a sample card")
-                .appendContent(p().textContent("Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra."))
-        .asElement());
+    /**
+     * This is the entry point method.
+     */
+    public void onModuleLoad() {
+        Layout layout = Layout.create("").show(ColorScheme.GREY);
+        Style.of(layout.getContentSection())
+                .css("content-margin")
+        .setMarginBottom("40px");
+        HTMLElement element = (HTMLElement) DomGlobal.document.querySelector(".container-fluid");
+        HTMLElement header = (HTMLElement) DomGlobal.document.querySelector(".navbar-header");
+        header.remove();
+        element.insertBefore(img(GWT.getHostPageBaseURL() + "imgs/souqAmazon-logo-v2.png").style("margin-top: 12px; margin-left: 36px;").asElement(), element.firstChild);
+
+        layout.getContentPanel()
+                .appendChild(deliveryManagementComponent.asElement());
+
+        deliveryManagementComponent.getReceiverBox().asElement().addEventListener("click", evt -> {
+            ElementUtil.clear(layout.getContentPanel());
+            layout.getContentPanel().appendChild(receiverComponent.asElement());
+        });
+
+        deliveryManagementComponent.getWhenBox().asElement().addEventListener("click", evt -> {
+            ElementUtil.clear(layout.getContentPanel());
+            layout.getContentPanel().appendChild(shipmentDateComponent.asElement());
+        });
+
+        deliveryManagementComponent.getWhereBox().asElement().addEventListener("click", evt -> {
+            ElementUtil.clear(layout.getContentPanel());
+            layout.getContentPanel().appendChild(shipmentAddressComponent.asElement());
+        });
+
+        receiverComponent.setPersonSelectionHandler(person -> {
+            deliveryManagementComponent.setReceiver(person);
+            ElementUtil.clear(layout.getContentPanel());
+            layout.getContentPanel().appendChild(deliveryManagementComponent.asElement());
+        });
+
+        shipmentDateComponent.setDateSelectionHandler(date -> {
+            deliveryManagementComponent.setDate(date);
+            ElementUtil.clear(layout.getContentPanel());
+            layout.getContentPanel().appendChild(deliveryManagementComponent.asElement());
+        });
+
+        shipmentAddressComponent.setAddressSelectionHandler(address -> {
+            ElementUtil.clear(layout.getContentPanel());
+            layout.getContentPanel().appendChild(deliveryManagementComponent.asElement());
+        });
+
     }
 }
