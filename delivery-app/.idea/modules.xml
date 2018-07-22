@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/deliveryapp.iml" filepath="$PROJECT_DIR$/deliveryapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dominoui-sample-client/deliveryapp-client.iml" filepath="$PROJECT_DIR$/dominoui-sample-client/deliveryapp-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dominoui-sample-server/dominoui-sample-server.iml" filepath="$PROJECT_DIR$/dominoui-sample-server/dominoui-sample-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dominoui-sample-shared/dominoui-sample-shared.iml" filepath="$PROJECT_DIR$/dominoui-sample-shared/dominoui-sample-shared.iml" />
+    </modules>
+  </component>
+</project>

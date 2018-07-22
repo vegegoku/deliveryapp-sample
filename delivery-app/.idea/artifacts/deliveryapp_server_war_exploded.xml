@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="deliveryapp-server:war exploded">
+    <output-path>$PROJECT_DIR$/dominoui-sample-server/target/deliveryapp-server-1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="deliveryapp-server" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="dominoui-sample-shared-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="dominoui-sample-shared" />
+          </element>
+          <element id="library" level="project" name="Maven: com.google.gwt:gwt-servlet:2.8.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/dominoui-sample-server/target/deliveryapp-server-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="deliveryapp-server/web/Web" />
+    </root>
+  </artifact>
+</component>
